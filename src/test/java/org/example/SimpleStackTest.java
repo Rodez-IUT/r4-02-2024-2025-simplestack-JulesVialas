@@ -1,6 +1,5 @@
 package org.example;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -58,5 +57,15 @@ class SimpleStackTest {
         // When we "pop" the stack, should throws an EmptyStackException.
         assertThrows(EmptyStackException.class, ()->stack.pop(), "EmptyStackException not thrown");
         assertThrows(EmptyStackException.class, stack::pop, "EmptyStackException not thrown");
+    }
+
+    @Test
+    @DisplayName("Test Pop")
+    public void testPop() throws EmptyStackException {
+        Stack stack = new SimpleStack();
+        Item item = new SimpleItem();
+        stack.push(item);
+        assertSame(item, stack.pop(), "The popped item must be the same as the pushed one");
+        assertTrue(stack.isEmpty(), "The stack must be empty after a pop");
     }
 }
